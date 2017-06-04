@@ -1,0 +1,32 @@
+@media screen and (max-width: 767px){
+	body{
+		padding-top: 80px;
+	}
+
+	nav .flex{
+		width: 100%;
+		padding-right: 15px;
+	}
+
+	.navbar-nav{
+		margin: 0;
+	}
+}
+
+@media screen and (max-width: 541px){
+	nav .flex{
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.navbar-nav{
+		width: 90%;
+		justify-content: space-between;
+	}
+
+	body{
+		padding-top: 140px;
+	}
+}
+
+

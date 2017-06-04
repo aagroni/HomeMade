@@ -1,0 +1,25 @@
+body{
+	padding-bottom: 50px !important;
+}
+
+.navbar{
+	border-radius: 0;
+}
+
+.actions{
+	float:right;
+}
+
+#sort-table th{
+	cursor: pointer; 
+	font-weight: bold;
+}
+
+.page-header{
+	margin: 10px 0 20px 0 !important;
+}
+
+.newBtn{
+	position: absolute !important;
+	top: 75px;
+}

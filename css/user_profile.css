@@ -1,0 +1,26 @@
+#intro
+{
+	border-radius: 10px;
+	margin-top: 15px;
+	background-color: lightgrey;
+	padding: 15px;
+}
+
+#intro div:first-child
+{
+	padding-left: 0;
+}
+
+#top-bar div:last-child{
+	padding-right: 0;
+}
+
+#topnav ul li a
+{ 
+	border: 1px solid #0A1123;
+}
+
+#user-img
+{
+	width: 100%;
+}

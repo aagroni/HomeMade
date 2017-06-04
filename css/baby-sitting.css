@@ -1,0 +1,114 @@
+body {
+    padding-top: 50px;
+	overflow-x: hidden !important;
+}
+
+#title{
+    font-family: 'Pacifico', cursive;
+    font-size: 25px;
+}
+
+#body::before{
+    opacity: 0.1;
+}
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 0;
+    background-color: lightgray;
+    border: none;
+}
+
+.thumbnail a{
+    color: darkslategray;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+.image{
+    height: 200px;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+.kategoria
+{
+    font-size: 32px;
+	text-align: center;
+	color: darkslategray;
+}
+
+h1{
+    font-size: 32px;
+    padding: 10px;
+	color: darkslategray;
+}
+
+.filter-box
+{
+    padding: 10px;
+	width: 90%;
+	height: auto;
+	margin: 10px;
+    margin-top: 0;
+    border-radius: 10px;
+    background-color: lightgray;
+}
+
+.filter-box h4{
+    margin-top: 0;
+    color: darkslategray;
+    font-weight: bold;
+}
+
+#fixed{
+    position: fixed;
+}
+
+input[type="checkbox"]{
+    margin-top: 10px !important;
+    padding-top: 2px !important;
+}
+
+#top-search
+{
+	width: 60%;
+	display: inline;
+}
+
+#search-btn
+{
+	display: inline;
+}
+
+#postbtn
+{
+	margin-left: 10px !important;
+}
+
+#btns
+{
+	padding-top: 15px !important;
+	margin-bottom: 20px;
+}

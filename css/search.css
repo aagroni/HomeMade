@@ -1,0 +1,53 @@
+.searchResult {
+     background: #fff;
+    position: absolute;
+    width: 240px;
+    right: 156px;
+    /*display: block;*/
+    display: none;
+    max-height: 250px;
+    overflow: hidden;
+    border-radius: 3px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+}
+
+.searchResult ul {
+    position: relative;
+    right: 45px;
+}
+
+.searchResult ul li {
+    padding: 11px;
+    display: block;
+    width: 122%;
+    overflow: hidden;
+    color: #888;
+    border-bottom: 1px solid #eee;  
+}
+.searchResult ul li:hover { 
+    background-color: rgba(0,0,0,0.03);
+}
+
+.searchResult ul li a {
+  background-size: 50px 60px;  
+}
+
+.searchResult ul li .thumb {
+    float: left;
+    width: 50px;
+    height: 60px;
+    display: inline-block;
+}
+
+.searchResult ul li .ss-info {
+    padding-left: 50px;
+    color: #888;
+    position: relative;
+    left: 10px;
+}
+
+.searchResult ul li .ss-info a.ss-title {
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+}

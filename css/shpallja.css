@@ -1,0 +1,56 @@
+
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+footer {
+    margin: 50px 0;
+}
+
+#seller-img
+{
+	float: left;
+	border-radius: 10px;
+	height: 200px;
+	width: 200px;
+}
+
+tr th
+{
+	margin-bottom: 10px;
+}
+
+.info-div
+{
+	margin-top: 170px;
+	background-color: lightgrey;
+	border-radius: 10px;
+	padding: 10px;
+	padding-top: 3px;
+}
+
+#titulli
+{
+	text-align: left;
+	word-break: break-all;
+}
+
+#buy-btn
+{
+	margin-top: 20px;
+	
+}
+
+#pershkrimi
+{
+	margin-top: 50px;
+}
+
+#img-user
+{
+	border-radius: 10px;
+	width: 90%;
+	height: 400px;
+	margin: 0 auto;
+}
