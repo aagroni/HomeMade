@@ -157,8 +157,8 @@
         </div><!-- user table end -->
     </div>
     
-    <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
     <script src="../js/datatables.js"></script>
     <script src="../js/jquery.validate.min.js"></script>
     <script src="../js/additional-methods.min.js"></script>
