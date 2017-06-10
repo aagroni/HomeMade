@@ -197,6 +197,12 @@ $(function() {
     },
     cmimi: {
       required: true
+    },
+    qyteti: {
+      required: true
+    },
+    adresa: {
+      required: true
     }
   },
   messages: {
@@ -214,6 +220,12 @@ $(function() {
     },
     cmimi: {
       required: "Cmimi nuk munde te lihet i zbrazet"
+    },
+    qyteti: {
+      required: "Qyteti nuk munde te lihet i zbrazet"
+    },
+    adresa: {
+      required: "Adresa nuk munde te lihet e zbrazet"
     }
 
   }
