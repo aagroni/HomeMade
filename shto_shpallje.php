@@ -18,7 +18,7 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <script src="js/jquery.min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <style type="text/css">
         body {
             padding-top: 70px;
@@ -32,9 +32,13 @@
 include ("includes/connect_db.php");
 include ("includes/functions.php");
 
-//Me i Marr Kategorite edhe me i rujt me nje Array
+//Me i Marr Kategorite 
 $getKategorite = "SELECT * FROM kategoria ORDER BY emri ASC";
 $resultKat = mysqli_query($conn,$getKategorite);
+
+//Me i Marr Kategorite 
+$getQytetet = "SELECT * FROM qyteti ORDER BY emri ASC";
+$resultQytetet = mysqli_query($conn,$getQytetet);
 
 if (isset( $_POST['shto'] )) {
 $titulli = $short_pershkrimi = $pershkrimi = $foto = $cmimi = $target = "";
@@ -42,6 +46,8 @@ $titulli = validateFormData( $_POST["titulli"]);
 $short_pershkrimi = validateFormData( $_POST["short_pershkrimi"]);
 $pershkrimi = validateFormData( $_POST["pershkrimi"]);
 $cmimi = validateFormData( $_POST["cmimi"]);
+$qyteti = validateFormData( $_POST["qyteti"]);
+$adresa = validateFormData( $_POST["adresa"]);
 //$target = "uploads/movies/".basename($_FILES['foto'] ['name']);
 //$foto = $_FILES['foto'] ['name'];
 
@@ -52,23 +58,29 @@ $newfoto = round(microtime(true)) . '.' . end($temp);
 //foton e uplodume me qu ne folderin uploads/movies
 move_uploaded_file($_FILES["foto"]["tmp_name"], "uploads/shpalljet/" . $newfoto);
 
-  if($stmt = mysqli_prepare($conn, "INSERT INTO shpallja (titulli, short_pershkrimi, pershkrimi, user,cmimi) VALUES (?,?,?,?,?)")){
+    $shtoadresen = mysqli_prepare($conn, "INSERT INTO adresa (qyteti,adresa) VALUES (?,?)");
+        mysqli_stmt_bind_param($shtoadresen, "is", $qyteti, $adresa);
+        mysqli_stmt_execute($shtoadresen);
+        mysqli_stmt_close($shtoadresen);
+        $last_adresa_id = mysqli_insert_id($conn);
 
-    mysqli_stmt_bind_param($stmt, "sssis", $titulli, $short_pershkrimi, $pershkrimi, $useri, $cmimi);
+  if($stmt = mysqli_prepare($conn, "INSERT INTO shpallja (titulli, short_pershkrimi, pershkrimi, user,cmimi,adresa) VALUES (?,?,?,?,?,?)")){
+
+    mysqli_stmt_bind_param($stmt, "sssisi", $titulli, $short_pershkrimi, $pershkrimi, $useri, $cmimi, $last_adresa_id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
-    $last_id = mysqli_insert_id($conn);
+    $last_shpallja_id = mysqli_insert_id($conn);
     //Te gjitha Kategorite e selektume me i shti ne tbl shpallja_kategoria me id e shpalljat
     $stmt2 = mysqli_prepare($conn, "INSERT INTO shpallja_kategoria (shpallja, kategoria) VALUES (?,?)"); 
     foreach ($_POST['Kategorite'] as $kategoria1) {
-        mysqli_stmt_bind_param($stmt2, "ii", $last_id, $kategoria1);
+        mysqli_stmt_bind_param($stmt2, "ii", $last_shpallja_id, $kategoria1);
         mysqli_stmt_execute($stmt2);
     }
     mysqli_stmt_close($stmt2);
     //Te gjitha Kategorite e selektume me i shti ne tbl shpallja_kategoria me id e shpalljat
     $stmt3 = mysqli_prepare($conn, "INSERT INTO shpallja_gallery (foto, shpallja) VALUES (?,?)"); 
-        mysqli_stmt_bind_param($stmt3, "si", $newfoto, $last_id);
+        mysqli_stmt_bind_param($stmt3, "si", $newfoto, $last_shpallja_id);
         mysqli_stmt_execute($stmt3);
     mysqli_stmt_close($stmt3);
     $Sukses = "<div class='alert alert-success'><strong>Shpallja</strong> u shtua me Sukses. <a class='close' data-dismiss='alert'>&times;</a></div>";
@@ -114,6 +126,7 @@ mysqli_close($conn);
         <?php echo($Sukses);
               echo($Deshtim);
               echo ($SkaKategori);
+              echo ($SkaQytete);
         ?>
         <form id="shpallja_form" action="<?php echo htmlspecialchars($_SERVER[" PHP_SELF "]);?>" method="post" enctype="multipart/form-data">
 
@@ -122,10 +135,10 @@ mysqli_close($conn);
                     <label for="titulli">Title</label>
                     <input type="text" id="titulli" name="titulli" class="form-control">
                 </div>
-        </div>  <!-- END ROW --> 
+        </div>
         <div class="row">        
             <div class="form-group col-sm-6">
-                <label for="pershkrimi">Short Description</label>
+                <label for="short_pershkrimi">Short Description</label>
                 <textarea id="short_pershkrimi" name="short_pershkrimi" class="form-control" rows="2"></textarea>
             </div>
         </div>
@@ -164,7 +177,30 @@ mysqli_close($conn);
                         }
                 ?> 
             </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <?php 
+                        if(mysqli_num_rows($resultQytetet)>0){
+                            //Me i shfaq studiot ne list, si value e ka id
+                            echo "<label for='qyteti'>Zgjedhe Qytetin</label>";
+                            echo "<select id='qyteti' data-placeholder='Zgjidh Qytetin'  name='qyteti'  class='chosen-select' tabindex='4'>";
+                            while ($row = mysqli_fetch_assoc($resultQytetet)) {
+                            echo "<option value='".$row['id']."'>". $row['emri']."</option>";
+                            }
+                            echo "</select>";
+                        } else {
+                            $SkaQytete = "<div class='alert alert-danger'><strong>Verejtje</strong> Nuk Ka Qytete ne DB <a class='close' data-dismiss='alert'>&times;</a></div>";
+                        }
+                ?>
+            </div>
         </div> 
+        <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="adresa">Adresa</label>
+                    <input type="text" id="adresa" name="adresa" class="form-control">
+                </div>
+        </div>
             <div class="row">
                 <div class="col-sm-12">
                     <a href="index.php" type="button" class="btn btn-primary">Anulo</a>
