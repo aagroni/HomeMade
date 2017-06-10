@@ -46,3 +46,7 @@
 .well{
     margin-top: 50px;
 }
+
+h5{
+    display: inline-block;
+}

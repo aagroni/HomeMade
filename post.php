@@ -117,30 +117,23 @@
 							 </div></div>
 				<div class="col-md-4">
 					<div class="row">
-						<!-- <div class="col-md-6"></div> -->
-						
 						<div class="col-md-6">
 							<div id="seller-img"></div>
-							
-							<div>
-								<table>
-								  <tr>
-								  <th>Name: </th>
-								  <?php 
-								  	echo "<td>".$row['emri']." ".$row['mbiemri']."</td>";
-								   ?>
-								  </tr>
-								  <br>
-								  <tr>
-									<th>Telephone: </th>
-									<?php 
-								  	echo "<td>".$row['telefoni1']."</td>";
-								   ?>
-								  </tr>
-								</table>
-							</div>
-						
-						</div>
+
+                            <h5 style="font-weight: bold">Name: </h5> 
+                            <?php echo ("<h5>".$row['emri']." ".$row['mbiemri']."</h5>"); ?><br>
+
+                            <h5 style="font-weight: bold">Telephone: </h5> 
+                            <?php echo ("<h5>".$row['telefoni1']."</h5>"); ?><br>
+
+                            <h5 style="font-weight: bold">City: </h5>
+                            <?php ?><br> 
+
+                            <h5 style="font-weight: bold">Address: </h5> 
+                            <?php echo ("<h5>".$row['adresa']."</h5>"); ?>
+
+
+                        </div>
 					</div>
 				</div>
 							<script>
@@ -156,7 +149,7 @@
 				</div>
 			</div><!-- END Container -->
 
-			 <div class="container">
+			<div class="container">
         <div class="row">
         <div class="col-md-9"><!-- class="col-lg-10 col-sm-8 col-xs-12" -->
 
