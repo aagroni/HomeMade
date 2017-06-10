@@ -15,8 +15,7 @@ if(($_POST['user_ban_id'])){
 
         $result = mysqli_query($conn, $select_query);
 
-        if(mysqli_num_rows($result) > 0){
-            $output .= '
+        $output .= '
                 <table id="sort-table" data-order="[[ 4, "desc" ]]" class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -31,6 +30,7 @@ if(($_POST['user_ban_id'])){
                     </thead>
                     <tbody>';
 
+        if(mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_assoc($result)){
                 $query2 = "SELECT emri, mbiemri FROM user
                             INNER JOIN user_ban ON user.id = user_ban.user
@@ -56,14 +56,14 @@ if(($_POST['user_ban_id'])){
                             <td>' . $row["data"] . '</td>
                             <td>' . $row["arsya"] . '</td>
                             <td>' . $row["isBanned"] . '</td>
-                            <td><a type="button" name="delete" id="' . $row["user"] . '" class="btn btn-success deleteUser"><i class="glyphicon glyphicon-heart"></i></a></td>
+                            <td><a type="button" name="unbanBtn" id="' . $row["user"] . '" class="btn btn-success unbanBtn"><i class="glyphicon glyphicon-heart"></i></a></td>
                         </tr>';
             }
+        }
 
-            $output .= '
+        $output .= '
                 </tbody>
             </table';
-        }
     }
 
     echo $output;

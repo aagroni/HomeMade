@@ -165,8 +165,7 @@
     <script src="../js/validation.js"></script>
     
     <script>
-
-        $(document).ready(function() {
+        $(document).ready(function(){
             $('#sort-table').dataTable( {
                 "ordering": true,
                 columnDefs: [{
@@ -174,14 +173,10 @@
                 targets: "no-sort"
                 }]
             });
-        });
-    </script>
 
-    <script>
-        $(document).ready(function(){
             $('#admin_new_user').on('submit', function(event){
                 event.preventDefault();
-
+                
                 var myform = document.getElementById("admin_new_user");
                 var formData = new FormData(myform);
 
@@ -237,9 +232,6 @@
                         $('#telefoni2').val(person.tel2);
                         $('#data_lindjes').val(person.data_lindjes);
                         $('#roli').val(person.roli);
-                       // $_POST['fotoperedit'].val(person.foto);
-                      // $fotoperedit.val(person.foto);
-                       // $_SESSION['fotoperedit'] = "test.jpg";//me dergu foton per edit
                         $('#user_id').val(person.id);
 
                         $('#new_user').modal('show');
@@ -248,8 +240,6 @@
             });
 
             $('#admin_ban_user').on('submit', function(event){
-                event.preventDefault();
-
                 var banForm = document.getElementById("admin_ban_user");
                 var banFormData = new FormData(banForm);
 
@@ -349,16 +339,8 @@
                         <input type="number" class="form-control" id="telefoni1" name="telefoni1">
                     </div>
                     <div class="form-group">
-                        <label for="telefoni2">Phone 2</label>
-                        <input type="number" class="form-control" id="telefoni2" name="telefoni2">
-                    </div>
-                    <div class="form-group">
                         <label for="data_lindjes">Birth Date</label>
                         <input type="date" id="data_lindjes" min="1920-01-01" name="data_lindjes" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="foto">Picture</label>
-                        <input type="file" id="foto" name="foto" placeholder="Birth Date">
                     </div>
                     <div class="form-group">
                         <?php 

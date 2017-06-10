@@ -132,10 +132,9 @@
     <script src="../js/jquery.validate.min.js"></script>
     <script src="../js/additional-methods.min.js"></script>
     <script src="../js/validation.js"></script>
-    
 
-   <script>
-        $(document).ready(function() {
+    <script>
+        $(document).ready(function(){
             $('#sort-table').dataTable( {
                 "ordering": true,
                 columnDefs: [{
@@ -143,27 +142,26 @@
                 targets: "no-sort"
                 }]
             });
-        });
-    </script>
-    <script>
-        $(document).on("click", ".unbanBtn", function(){
-            var user_ban_id = $(this).attr('id');
 
-            $.ajax({
-                url: "unban.php",
-                method: "POST",
-                data: { user_ban_id:user_ban_id },
-                success: function(data){
-                    $('#user_table').html(data);
+            $(document).on("click", ".unbanBtn", function(){
+                var user_ban_id = $(this).attr('id');
 
-                    $('#sort-table').dataTable( {
-                        "ordering": true,
-                        columnDefs: [{
-                        orderable: false,
-                        targets: "no-sort"
-                        }]
-                    });
-                }
+                $.ajax({
+                    url: "unban.php",
+                    method: "POST",
+                    data: { user_ban_id:user_ban_id },
+                    success: function(data){
+                        $('#user_table').html(data);
+
+                        $('#sort-table').dataTable( {
+                            "ordering": true,
+                            columnDefs: [{
+                            orderable: false,
+                            targets: "no-sort"
+                            }]
+                        });
+                    }
+                });
             });
         });
     </script>
