@@ -45,7 +45,17 @@
         $userrole = $row['roli']; 
       }
 
-      //me kshyr pasin qe e ka shenu a perputhet met pasin ne db qe osht i enkriptum
+      $banQuery = "SELECT * FROM user_ban
+                WHERE user = '$userid'";
+
+      $banResult = mysqli_query($conn, $banQuery);
+
+      if(mysqli_num_rows($banResult)>0){
+          $signinerror = "<div class='alert alert-danger'>Your account is temporarly banned!</div>";
+      }
+
+      else{
+        //me kshyr pasin qe e ka shenu a perputhet met pasin ne db qe osht i enkriptum
       if (password_verify($pasi, $hashedpass)) {
         //nese vjen qety te dhenat jane te sakta(succesful sign in)
 
@@ -70,11 +80,11 @@
       } else {
         $signinerror = "<div class='alert alert-danger'>Te dhenat Gabim</div>";
       }
+      }
 
     } else {
       $signinerror = "<div class='alert alert-danger'>Te dhenat Gabim</div>";
     }
-
   }
 
   mysqli_close($conn);
